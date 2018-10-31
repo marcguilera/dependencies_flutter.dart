@@ -7,4 +7,4 @@ import 'package:quiver/check.dart';
 
 part 'src/injector_widget.dart';
 part 'src/injector_widget_mixin.dart';
-part 'src/binding_injector_widget.dart';
+part 'src/module_widget.dart';

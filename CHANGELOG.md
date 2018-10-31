@@ -17,3 +17,7 @@
 ## 0.0.5
 
 - Added `BindingInjectorWidget`.
+
+## 0.0.6
+
+- Upgraded to newer `dependencies:0.0.5` api.

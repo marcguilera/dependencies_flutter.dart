@@ -1,16 +1,12 @@
 part of 'package:dependencies_flutter/dependencies_flutter.dart';
 
-/// A function used to add the bindings to an [Injector].
-typedef void BindFunc(Binder binder);
-
 /// [InheritedWidget] containing an [Injector].
 class InjectorWidget extends InheritedWidget {
-  final Injector _injector;
+  final Injector injector;
 
   const InjectorWidget._internal(
-      {@required Injector injector, Key key, @required Widget child})
-      : this._injector = injector,
-        super(key: key, child: child);
+      {@required this.injector, Key key, @required Widget child})
+      : super(key: key, child: child);
 
   /// Creates an [InjectorWidget] based on an [Injector].
   factory InjectorWidget({
@@ -21,31 +17,25 @@ class InjectorWidget extends InheritedWidget {
     checkNotNull(injector, message: () => "injector can't be null");
     checkNotNull(child, message: () => "child can't be null");
 
-    return InjectorWidget._internal(injector: injector, key: key, child: child);
+    return InjectorWidget._internal(key: key, injector: injector, child: child);
   }
 
   /// Creates an [InjectorWidget] based on a [BinderFunc].
   factory InjectorWidget.bind(
-      {Key key,
-      @required BindFunc binderFunc,
-      String name,
-      bool enableOverriding,
-      @required Widget child}) {
-    checkNotNull(binderFunc, message: () => "binder can't be null");
+      {Key key, @required BindFunc bindFunc, @required Widget child}) {
+    checkNotNull(bindFunc, message: () => "binder can't be null");
     checkNotNull(child, message: () => "child can't be null");
 
     final builder = Injector.builder();
-    if (name != null) builder.setName(name);
-    if (enableOverriding == true) builder.enableOverriding();
-    binderFunc(builder);
+    bindFunc(builder);
     final injector = builder.build();
 
-    return InjectorWidget._internal(injector: injector, key: key, child: child);
+    return InjectorWidget._internal(key: key, injector: injector, child: child);
   }
 
   @override
   bool updateShouldNotify(InjectorWidget oldWidget) {
-    return oldWidget._injector != _injector;
+    return oldWidget.injector != injector;
   }
 
   /// Gets an [Injector] from the [BuildContext].
@@ -55,7 +45,7 @@ class InjectorWidget extends InheritedWidget {
       throw InjectorWidgetError._internal(
           "No `InjectorWidget` was found in the context.");
     }
-    return w._injector;
+    return w.injector;
   }
 }
 

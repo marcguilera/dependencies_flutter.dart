@@ -11,7 +11,7 @@ class SomeRootWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InjectorWidget.bind(
-      binderFunc: (binder) {
+      bindFunc: (binder) {
         binder
           ..install(MyModule())
           ..bindSingleton("api123", name: "api_key");
@@ -25,7 +25,7 @@ class SomeRootWidget extends StatelessWidget {
 You can also extend `BindingInjectorWidget` to configure your dependencies:
 
 ```dart
-class MyBinder extends BindingInjectorWidget {
+class MyBinder extends ModuleWidget {
   MyBinder({Key key, @required Widget child}): super(key: key, child: child);
   @override
   void configure(Binder binder) {

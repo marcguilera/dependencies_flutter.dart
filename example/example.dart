@@ -6,21 +6,21 @@ class SomeRootWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InjectorWidget.bind(
-        binderFunc: (binder) {
+        bindFunc: (binder) {
           binder
             ..install(MyModule())
             ..bindSingleton("api123", name: "api_key");
         },
         child: Container(
-          child: Container(
-            child: SomeWidget(),
-          )
+            child: Container(
+              child: SomeWidget(),
+            )
         )
     );
   }
 }
 
-class MyModule extends Module {
+class MyModule implements Module {
   @override
   void configure(Binder binder) {
     binder
@@ -47,7 +47,7 @@ class SomeOtherWidget extends StatelessWidget with InjectorWidgetMixin {
   }
 }
 
-class MyBinder extends BindingInjectorWidget {
+class MyBinder extends ModuleWidget {
   MyBinder({Key key, @required Widget child}): super(key: key, child: child);
   @override
   void configure(Binder binder) {

@@ -4,8 +4,7 @@ part of 'package:dependencies_flutter/dependencies_flutter.dart';
 /// This can be applied to [State] or to [StatelessWidget] classes.
 abstract class InjectorWidgetMixin {
   Widget build(BuildContext context) {
-    final injector = InjectorWidget.of(context);
-    return buildWithInjector(context, injector);
+    return buildWithInjector(context, InjectorWidget.of(context));
   }
 
   /// Build the [Widget] with the existing [Injector].
