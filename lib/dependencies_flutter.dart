@@ -8,3 +8,5 @@ import 'package:quiver/check.dart';
 part 'src/injector_widget.dart';
 part 'src/injector_widget_mixin.dart';
 part 'src/module_widget.dart';
+part 'src/flutter_injector.dart';
+part 'src/error.dart';

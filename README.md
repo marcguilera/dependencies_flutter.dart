@@ -41,7 +41,7 @@ You can later refer to the injector like any other `InheritedWidget`.
 class SomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final injector = InjectorWidget.of(context);
+    final injector = FlutterInjector.of(context);
     final apiKey = injector.get(name: "api_key");
     return SomeContainerNeedingTheKey(apiKey);
   }

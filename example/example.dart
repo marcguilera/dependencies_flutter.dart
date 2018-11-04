@@ -31,7 +31,7 @@ class MyModule implements Module {
 class SomeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final injector = InjectorWidget.of(context);
+    final injector = FlutterInjector.of(context);
     final apiKey = injector.get(name: "api_key");
     print(apiKey);
     return Container();

@@ -1,12 +1,13 @@
 part of 'package:dependencies_flutter/dependencies_flutter.dart';
 
 /// [InheritedWidget] containing an [Injector].
-class InjectorWidget extends InheritedWidget {
+class InjectorWidget extends StatefulWidget {
   final Injector injector;
+  final Widget child;
 
   const InjectorWidget._internal(
-      {@required this.injector, Key key, @required Widget child})
-      : super(key: key, child: child);
+      {@required this.injector, Key key, @required this.child})
+      : super(key: key);
 
   /// Creates an [InjectorWidget] based on an [Injector].
   factory InjectorWidget({
@@ -34,26 +35,34 @@ class InjectorWidget extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(InjectorWidget oldWidget) {
-    return oldWidget.injector != injector;
+  _InjectorWidgetState createState() => _InjectorWidgetState();
+}
+
+class _InjectorWidgetState extends State<InjectorWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return _InjectorInheritedWidget(
+      injector: widget.injector,
+      child: widget.child,
+    );
   }
 
-  /// Gets an [Injector] from the [BuildContext].
-  static Injector of(BuildContext context) {
-    InjectorWidget w = context.inheritFromWidgetOfExactType(InjectorWidget);
-    if (w == null) {
-      throw InjectorWidgetError._internal(
-          "No `InjectorWidget` was found in the context.");
-    }
-    return w.injector;
+  @override
+  void dispose() {
+    super.dispose();
+    widget.injector.dispose();
   }
 }
 
-/// Thrown when the [InjectorWidget] is not present.
-class InjectorWidgetError extends StateError {
-  InjectorWidgetError._internal(String message) : super(message);
+class _InjectorInheritedWidget extends InheritedWidget {
+  final Injector injector;
+
+  const _InjectorInheritedWidget(
+      {@required this.injector, Key key, @required Widget child})
+      : super(key: key, child: child);
+
   @override
-  String toString() {
-    return 'InjectorWidgetError: $message';
+  bool updateShouldNotify(_InjectorInheritedWidget oldWidget) {
+    return oldWidget.injector != injector;
   }
 }
