@@ -38,14 +38,11 @@ class InjectorWidget extends StatefulWidget {
     checkNotNull(bindFunc, message: () => "binder can't be null");
     checkNotNull(child, message: () => "child can't be null");
 
-    final builder = Injector.builder();
-    bindFunc(builder);
-    final injector = builder.build();
-
     return InjectorWidget(
         key: key,
-        injector:
-        injector,
+        injector: Injector(
+            bindFunc: bindFunc
+        ),
         child: child,
         autoDispose: autoDispose
     );

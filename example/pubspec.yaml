@@ -1,0 +1,11 @@
+name: dependencies_flutter_example
+description: A simple and modular dependency injection system for Flutter.
+
+environment:
+  sdk: ">=2.0.0 <3.0.0"
+
+dependencies:
+  dependencies_flutter:
+    path: ../
+  flutter:
+    sdk: flutter
