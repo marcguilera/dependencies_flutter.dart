@@ -4,9 +4,10 @@ part of 'package:dependencies_flutter/dependencies_flutter.dart';
 class InjectorWidget extends StatefulWidget {
   final Injector injector;
   final Widget child;
+  final bool autoDispose;
 
   const InjectorWidget._internal(
-      {@required this.injector, Key key, @required this.child})
+      {@required this.injector, Key key, @required this.child, this.autoDispose})
       : super(key: key);
 
   /// Creates an [InjectorWidget] based on an [Injector].
@@ -14,16 +15,26 @@ class InjectorWidget extends StatefulWidget {
     Key key,
     @required Injector injector,
     @required Widget child,
+    bool autoDispose = true
   }) {
     checkNotNull(injector, message: () => "injector can't be null");
     checkNotNull(child, message: () => "child can't be null");
 
-    return InjectorWidget._internal(key: key, injector: injector, child: child);
+    return InjectorWidget._internal(
+        key: key,
+        injector: injector,
+        child: child,
+        autoDispose: autoDispose ?? true,
+    );
   }
 
   /// Creates an [InjectorWidget] based on a [BinderFunc].
-  factory InjectorWidget.bind(
-      {Key key, @required BindFunc bindFunc, @required Widget child}) {
+  factory InjectorWidget.bind({
+    Key key,
+    @required BindFunc bindFunc,
+    @required Widget child,
+    bool autoDispose = true
+  }) {
     checkNotNull(bindFunc, message: () => "binder can't be null");
     checkNotNull(child, message: () => "child can't be null");
 
@@ -31,7 +42,13 @@ class InjectorWidget extends StatefulWidget {
     bindFunc(builder);
     final injector = builder.build();
 
-    return InjectorWidget._internal(key: key, injector: injector, child: child);
+    return InjectorWidget(
+        key: key,
+        injector:
+        injector,
+        child: child,
+        autoDispose: autoDispose
+    );
   }
 
   @override
@@ -50,7 +67,9 @@ class _InjectorWidgetState extends State<InjectorWidget> {
   @override
   void dispose() {
     super.dispose();
-    widget.injector.dispose();
+    if (widget.autoDispose) {
+      widget.injector.dispose();
+    }
   }
 }
 

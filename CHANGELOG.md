@@ -25,3 +25,7 @@
 ## 0.1.0
 
 - Stable API.
+
+## 0.1.1
+
+- Dispose injector when the widget is disposed.
