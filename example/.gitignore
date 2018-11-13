@@ -5,9 +5,6 @@
 .pub/
 
 build/
-ios/.generated/
-ios/Flutter/Generated.xcconfig
-ios/Runner/GeneratedPluginRegistrant.*
 
 # Remove the following pattern if you wish to check in your lock file
 pubspec.lock
@@ -17,5 +14,6 @@ doc/api/
 
 .idea/
 
-android/local.properties
+android/
+ios/
 dependencies_flutter.iml

@@ -7,45 +7,43 @@ class InjectorWidget extends StatefulWidget {
   final bool autoDispose;
 
   const InjectorWidget._internal(
-      {@required this.injector, Key key, @required this.child, this.autoDispose})
+      {@required this.injector,
+      Key key,
+      @required this.child,
+      this.autoDispose})
       : super(key: key);
 
   /// Creates an [InjectorWidget] based on an [Injector].
-  factory InjectorWidget({
-    Key key,
-    @required Injector injector,
-    @required Widget child,
-    bool autoDispose = true
-  }) {
+  factory InjectorWidget(
+      {Key key,
+      @required Injector injector,
+      @required Widget child,
+      bool autoDispose = true}) {
     checkNotNull(injector, message: () => "injector can't be null");
     checkNotNull(child, message: () => "child can't be null");
 
     return InjectorWidget._internal(
-        key: key,
-        injector: injector,
-        child: child,
-        autoDispose: autoDispose ?? true,
+      key: key,
+      injector: injector,
+      child: child,
+      autoDispose: autoDispose ?? true,
     );
   }
 
   /// Creates an [InjectorWidget] based on a [BinderFunc].
-  factory InjectorWidget.bind({
-    Key key,
-    @required BindFunc bindFunc,
-    @required Widget child,
-    bool autoDispose = true
-  }) {
+  factory InjectorWidget.bind(
+      {Key key,
+      @required BindFunc bindFunc,
+      @required Widget child,
+      bool autoDispose = true}) {
     checkNotNull(bindFunc, message: () => "binder can't be null");
     checkNotNull(child, message: () => "child can't be null");
 
     return InjectorWidget(
         key: key,
-        injector: Injector(
-            bindFunc: bindFunc
-        ),
+        injector: Injector(bindFunc: bindFunc),
         child: child,
-        autoDispose: autoDispose
-    );
+        autoDispose: autoDispose);
   }
 
   @override
