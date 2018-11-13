@@ -1,6 +1,6 @@
 name: dependencies_flutter
 description: A simple and modular dependency injection system for Flutter.
-version: 0.1.3
+version: 0.1.4
 homepage: https://github.com/marcguilera/dart_dependencies_flutter
 author: marcguilera <marcguilerap@gmail.com>
 

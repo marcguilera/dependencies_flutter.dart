@@ -48,6 +48,17 @@ class InjectorWidget extends StatefulWidget {
 
   @override
   _InjectorWidgetState createState() => _InjectorWidgetState();
+
+  /// Gets an [Injector] from a ]BuildContext]
+  static Injector of(BuildContext context) {
+    final w = context.inheritFromWidgetOfExactType(_InjectorInheritedWidget);
+    if (w == null) {
+      throw InjectorWidgetError._internal(
+          "No `InjectorWidget` was found in the context.");
+    }
+    final injectorWidget = w as _InjectorInheritedWidget;
+    return injectorWidget.injector;
+  }
 }
 
 class _InjectorWidgetState extends State<InjectorWidget> {
