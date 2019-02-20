@@ -1,6 +1,6 @@
 name: dependencies_flutter
 description: A simple and modular dependency injection system for Flutter.
-version: 0.1.5
+version: 0.1.6
 homepage: https://github.com/marcguilera/dependencies_flutter.dart
 author: marcguilera <marcguilerap@gmail.com>
 
@@ -9,6 +9,6 @@ environment:
 
 dependencies:
   quiver: ^2.0.1
-  dependencies: ^0.1.4
+  dependencies: ^0.1.5
   flutter:
     sdk: flutter
