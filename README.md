@@ -4,6 +4,8 @@
 Simple package to ease the use of the [dependencies](https://pub.dartlang.org/packages/dependencies) with Flutter
 leveraging the power of `InheritedWidget`. 
 
+[Read the Medium article](https://medium.com/@marcguilera/dependency-injection-in-flutter-625650195a98)
+
 ## Usage
 
 ```dart
