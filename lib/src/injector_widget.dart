@@ -51,7 +51,7 @@ class InjectorWidget extends StatefulWidget {
 
   /// Gets an [Injector] from a ]BuildContext]
   static Injector of(BuildContext context) {
-    final w = context.inheritFromWidgetOfExactType(_InjectorInheritedWidget);
+    final w = context.dependOnInheritedWidgetOfExactType<_InjectorInheritedWidget>();
     if (w == null) {
       throw InjectorWidgetError._internal(
           "No `InjectorWidget` was found in the context.");
